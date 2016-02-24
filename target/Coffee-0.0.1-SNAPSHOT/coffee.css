@@ -1,0 +1,76 @@
+html{
+	background-color: #333333;
+	padding: 0px;
+	color: white;
+	margin: 0px;
+	font-family: helvetica;
+	background-image: url("background.jpg");
+
+}
+
+#content{
+	border: 1px solid #6C491A;
+	text-align: center;
+	margin-top: 40px;
+	background-color: rgba(53, 42, 39, 0.87);
+	width: 800px;
+	min-height: 500px;
+	box-shadow: 2px 2px 12px #333333;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+button{
+	background-color: white;
+	width: 200px;
+	height: 50px;
+	box-shadow: 2px 2px 12px #333333;
+	border: none;
+	margin-left: auto;
+	margin-right: auto;
+	display: block; 
+}
+button:hover{
+	box-shadow: 2px 2px 12px #ffffff;
+}
+
+.statistics{
+	/*font-size: 10em;*/
+	width: 100%;
+	height: 250px;
+	margin-bottom: 20px;
+}
+
+.coffee-logo{
+	height: 40px;
+	width: auto;
+
+}
+
+.viewMenu{
+	text-align: top;
+	padding-left: 0px;
+}
+
+.viewButtons{
+	width:100px;
+	display: inline-block;
+	padding: 10px;
+	background-color: rgba(33, 42, 39, 0.87);
+	border: 1px solid #6C491A;
+}
+a{
+	text-decoration: none;
+	color: white;
+}
+.personSelector{
+	width: 200px;
+	height: 30px;
+	margin-top: 10px;
+	color:black;
+}
+.registerContainer{
+	position: relative;
+  top: 50%;
+  transform: translateY(150%);
+}

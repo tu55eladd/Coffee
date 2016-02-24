@@ -1,0 +1,29 @@
+<DOCTYPE!>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="coffee.css">
+	<meta charset="UTF-8">
+</head>
+<body>
+	<script src="https://code.highcharts.com/highcharts.js"></script>
+	<script src="https://code.highcharts.com/modules/exporting.js"></script>
+
+	<div id="content" ng-app="CoffeeApp" ng-controller="CoffeeCtrl">
+		<div id="container" class="statistics">
+			<ul class="viewMenu">
+				<li ng-repeat="view in views" class="viewButtons">
+					<a href="#/{{view.href}}">{{view.name}}</a>
+				</li>
+			</ul>
+			<div ng-view>
+			</div>
+		</div>
+		
+	</div>
+
+	<script type="text/javascript"src="stats.js"></script>
+	<script type="text/javascript"src="angular/angular.js"></script>
+	<script type="text/javascript"src="angular/angular-route.js"></script>
+	<script type="text/javascript"src="app.js"></script>
+</body>
+</html>	

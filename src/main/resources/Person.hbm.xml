@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+ "-//Hibernate/Hibernate Mapping DTD//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping>
+   <class name="main.java.hello.Person" table="PERSON">
+      <meta attribute="class-description">
+         This class contains the address detail. 
+      </meta>
+      <id name="id" type="int" column="id">
+         <generator class="native"/>
+      </id>
+      <property name="name" column="name" type="string"/>
+   </class>
+
+   <class name="main.java.hello.Consumption" table="CONSUMPTION">
+      <meta attribute="class-description">
+         This class contains the employee detail. 
+      </meta>
+      <id name="id" type="int" column="id">
+         <generator class="native"/>
+      </id>
+      <property name="timestamp" column="timestamp" type="timestamp"/>
+      <many-to-one name="person" column="person"
+       class="main.java.hello.Person" not-null="true"/>
+   </class>
+   
+</hibernate-mapping>
