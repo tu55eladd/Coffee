@@ -82,7 +82,7 @@
 			<archive>
 				<manifest>
 					<addClasspath>true</addClasspath>
-					<mainClass>main.java.hello.Application</mainClass>
+					<mainClass>main.java.coffee.Application</mainClass>
 				</manifest>
 			</archive>
 			
