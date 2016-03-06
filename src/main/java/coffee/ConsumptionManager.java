@@ -16,8 +16,10 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.service.ServiceRegistry;
 
 import main.java.beans.Consumption;
 import main.java.beans.Person;
@@ -30,7 +32,11 @@ public class ConsumptionManager {
 	
 	public static void init(){
 		try{
-	        factory = new Configuration().configure().buildSessionFactory();
+	        Configuration configuration = new Configuration();
+	        configuration.configure();
+	        ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(
+	                configuration.getProperties()). build();
+	        factory = configuration.buildSessionFactory(serviceRegistry);
 	      }catch (Throwable ex) { 
 	         System.err.println("Failed to create sessionFactory object." + ex);
 	         throw new ExceptionInInitializerError(ex); 
