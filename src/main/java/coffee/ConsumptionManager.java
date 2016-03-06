@@ -1,4 +1,4 @@
-package main.java.hello;
+package main.java.coffee;
 
 import java.io.File;
 import java.sql.Timestamp;
@@ -18,6 +18,11 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.criterion.Restrictions;
+
+import main.java.beans.Consumption;
+import main.java.beans.Person;
+import main.java.beans.PersonConsumption;
+import main.java.util.DataFormatter;
 
 public class ConsumptionManager {
 

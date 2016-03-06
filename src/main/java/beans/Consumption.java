@@ -1,4 +1,4 @@
-package main.java.hello;
+package main.java.beans;
 
 //import org.hibernate.*;
 import java.sql.Timestamp;

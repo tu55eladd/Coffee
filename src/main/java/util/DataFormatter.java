@@ -1,4 +1,4 @@
-package main.java.hello;
+package main.java.util;
 
 import java.time.LocalDate;
 import java.time.Period;
@@ -6,6 +6,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import main.java.beans.Consumption;
+import main.java.beans.Person;
+import main.java.beans.PersonConsumption;
 
 public class DataFormatter {
 

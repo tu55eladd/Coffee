@@ -1,4 +1,4 @@
-package main.java.hello;
+package main.java.coffee;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +14,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
+
+import main.java.beans.Consumption;
+import main.java.beans.Person;
+import main.java.beans.PersonConsumption;
 
 
 @RestController
