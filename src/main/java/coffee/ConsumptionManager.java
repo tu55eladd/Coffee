@@ -31,16 +31,7 @@ public class ConsumptionManager {
 	private static SessionFactory factory;
 	
 	public static void init(){
-		try{
-	        Configuration configuration = new Configuration();
-	        configuration.configure();
-	        ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(
-	                configuration.getProperties()). build();
-	        factory = configuration.buildSessionFactory(serviceRegistry);
-	      }catch (Throwable ex) { 
-	         System.err.println("Failed to create sessionFactory object." + ex);
-	         throw new ExceptionInInitializerError(ex); 
-	      }
+		factory = SessionFactoryHolder.getSessionFactory();
 	}
 	
 	
@@ -61,24 +52,6 @@ public class ConsumptionManager {
 			session.close();
 		}
 		return consumptionID;
-	}
-	
-	public static Integer addPerson(Person person){
-		Session session = factory.openSession();
-		Transaction tx = null;
-		Integer personID = null;
-		try {
-			tx = session.beginTransaction();
-			personID = (Integer) session.save(person);
-			tx.commit();
-		}
-		catch (Exception e) {
-			if (tx!=null) tx.rollback();
-			e.printStackTrace(); 
-		}finally {
-			session.close();
-		}
-		return personID;
 	}
 	
 	public static List<Consumption> listConsumptions(){
@@ -102,23 +75,6 @@ public class ConsumptionManager {
 	         session.close(); 
 	      }
 	      return consumptions;
-	}
-	
-	public static List<Person> listPersons(){
-		Session session = factory.openSession();
-	      Transaction tx = null;
-	      List<Person> persons = null;
-	      try{
-	         tx = session.beginTransaction();
-	         persons = (List<Person>) session.createQuery("FROM Person").list();
-	         tx.commit();
-	      }catch (HibernateException e) {
-	         if (tx!=null) tx.rollback();
-	         e.printStackTrace(); 
-	      }finally {
-	         session.close(); 
-	      }
-	      return persons;
 	}
 	
 	public static void deleteConsumption(){
