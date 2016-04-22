@@ -30,6 +30,10 @@ public class ConsumptionManager {
 
 	private static SessionFactory factory;
 	
+	public ConsumptionManager(){
+		init();
+	}
+	
 	public static void init(){
 		factory = SessionFactoryHolder.getSessionFactory();
 	}
@@ -108,7 +112,7 @@ public class ConsumptionManager {
 	public static List<PersonConsumption> getDayViewData(int days){
 		if(days<1 || days>14){return new ArrayList<PersonConsumption>();};
 		List<Consumption> consumptions = getConsumptionsForDaysBackward(days);
-		List<Person> persons = listPersons();
+		List<Person> persons = PersonManager.listPersons();
 		
 		return DataFormatter.sortOnDaysAndPersons(consumptions,days,persons);
 	}

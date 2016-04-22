@@ -25,6 +25,7 @@ public class CoffeeController {
 
 	public CoffeeController(){
 		ConsumptionManager.init();
+		PersonManager.init();
 	}
 	
 	@RequestMapping(value = "/consumption/add", method = RequestMethod.POST) 
@@ -40,13 +41,13 @@ public class CoffeeController {
 		if(name==null || name==""){
 			return;
 		}
-		ConsumptionManager.addPerson(new Person(name));
+		PersonManager.addPerson(new Person(name));
 		System.out.println("Added persons");
 	}
 	
 	@RequestMapping(value="/person/all", method = RequestMethod.GET)
 	public List<Person> allPersons(){
-		List<Person> persons = ConsumptionManager.listPersons();
+		List<Person> persons = PersonManager.listPersons();
 		return persons;
 	}
 	

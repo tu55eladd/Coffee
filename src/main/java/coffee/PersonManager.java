@@ -11,14 +11,14 @@ import main.java.beans.Person;
 
 public class PersonManager {
 
-private static SessionFactory factory;
+	private static SessionFactory factory;
 	
 	public static void init(){
 		factory = SessionFactoryHolder.getSessionFactory();
 	}
 	
 	public static Integer addPerson(Person person){
-		if(isDuplicatePerson(person)) return null;
+		if(personInDatabase(person)) return null;
 		Session session = factory.openSession();
 		Transaction tx = null;
 		Integer personID = null;
@@ -53,7 +53,7 @@ private static SessionFactory factory;
 	      return persons;
 	}
 	
-	public static boolean isDuplicatePerson(Person person){
+	public static boolean personInDatabase(Person person){
 		if(listPersons().contains(person)){
 			return true;
 		}
