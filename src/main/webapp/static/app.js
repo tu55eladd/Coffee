@@ -2,6 +2,7 @@ var app = angular.module("CoffeeApp",['ngRoute']);
 
 app.controller("CoffeeCtrl", ['$scope', '$http', function($scope,$http) {
 
+	$scope.selected = {person:undefined};
 	$scope.views = [
 	{
 		name: "Register cup",
@@ -16,9 +17,10 @@ app.controller("CoffeeCtrl", ['$scope', '$http', function($scope,$http) {
 		href: "weekly"
 	}
 	];
-	$scope.addButtonDisabled = false;
+	$scope.addButtonDisabled = {value : false}
 	$scope.addCup = function (){
 		var person = getSelectedPerson()
+		console.log(person)
 		if(!person){return}
 		
 		$http({
@@ -29,15 +31,15 @@ app.controller("CoffeeCtrl", ['$scope', '$http', function($scope,$http) {
 	}
 
 	function addCupResponse(data){
-		$scope.addButtonDisabled = true;
+		$scope.addButtonDisabled.value = true;
 	}
 
 	function getSelectedPerson(){
-		return $scope.selectedPerson
+		return $scope.selected.person
 	}
 
 	changeToPersonView = function(){
-		$http.get("/consumtions/all")
+		$http.get("/consumtion/all")
 		.then(function(response){
 			
 			personChart($scope.persons, response.data)
@@ -54,13 +56,13 @@ app.controller("CoffeeCtrl", ['$scope', '$http', function($scope,$http) {
 	}
 
 	function getPersons(){
-		$http.get("/persons/all").
+		$http.get("/person/all").
 		then(setPersons,errorTrace);
 	}
 	
 	changeToWeekView = function(){
 		var days = 7
-		$http.get("/consumtions/daysback?days="+days)
+		$http.get("/consumtion/daysback?days="+days)
 		.then(function(response){
 			weekChart(response.data)
 		},errorTrace)
@@ -77,20 +79,20 @@ app.config(['$routeProvider',
 			.when('/home',{
 				templateUrl : function(params) {
 					//changeSelected()
-					return 'partials/person.html'
+					return 'static/partials/home.html'
 				}
 			})
 			.when('/total',{
 				templateUrl : function(params) {
 					//changeSelected()
 					setTimeout(changeToPersonView,10)
-					return 'partials/total.html'
+					return 'static/partials/total.html'
 				}
 			})
 			.when('/weekly',{
 				templateUrl : function(params) {
 					setTimeout(changeToWeekView,10);
-					return 'partials/weekly.html'
+					return 'static/partials/weekly.html'
 				}
 			})
 			.otherwise({

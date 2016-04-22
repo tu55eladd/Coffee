@@ -1,9 +1,12 @@
 <div class="registerContainer">
 	<p>Velg person og klikk på knappen for å registrere kaffekopp</p>
-	<button id="addButton" ng-click="addCup()">
-		<img class="coffee-logo" src="CoffeeLogo.jpg"/>
+	<button id="addButton" 
+	ng-click="addCup()" 
+	ng-disabled="addButtonDisabled.value"
+	ng-hide="addButtonDisabled.value ">
+		<img class="coffee-logo" src="static/CoffeeLogo.jpg"/>
 	</button>
-	<select ng-model="selectedPerson" class="personSelector" ng-disabled="addButtonDisabled">
+	<select ng-model="selected.person" class="personSelector" >
 		<option ng-repeat="person in persons" value="{{person}}">{{person.name}}</option>
 	</select>
 </div>
