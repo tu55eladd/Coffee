@@ -35,7 +35,7 @@ public class CoffeeController {
 		ConsumptionManager.addConsumption(person);
 	}
 	
-	@RequestMapping(value = "/add/person", method = RequestMethod.GET) 
+	@RequestMapping(value = "/person/add", method = RequestMethod.GET) 
 	public void getConsumptions(@RequestParam(value = "name")String name){
 		if(name==null || name==""){
 			return;
@@ -44,19 +44,19 @@ public class CoffeeController {
 		System.out.println("Added persons");
 	}
 	
-	@RequestMapping(value="/persons/all", method = RequestMethod.GET)
+	@RequestMapping(value="/person/all", method = RequestMethod.GET)
 	public List<Person> allPersons(){
 		List<Person> persons = ConsumptionManager.listPersons();
 		return persons;
 	}
 	
-	@RequestMapping(value = "/consumtions/all", method = RequestMethod.GET) 
+	@RequestMapping(value = "/consumtion/all", method = RequestMethod.GET) 
 	public List<Consumption> allConsumptions(){
 		List<Consumption> consumptions = ConsumptionManager.listConsumptions();
 		return consumptions;
 	}
 	
-	@RequestMapping(value = "/consumtions/daysback", method = RequestMethod.GET)
+	@RequestMapping(value = "/consumtion/daysback", method = RequestMethod.GET)
 	public List<PersonConsumption> consumptionsForDaysBack(@RequestParam(value="days") int days){
 		return ConsumptionManager.getDayViewData(days);
 	}
