@@ -33,5 +33,11 @@ public class Person {
 		this.id = id;
 	}
 	
+	@Override
+	public boolean equals(Object o){
+		if(o.getClass() != Person.class) return false;
+		return ((Person)o).getName().equals(this.name);
+	}
+	
 }
 
