@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.hibernate.Criteria;
+import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -64,14 +65,10 @@ public class ConsumptionManager {
 	    List<Consumption> consumptions = null;
 	      try{
 	         tx = session.beginTransaction();
-	         consumptions = session.createQuery("FROM Consumption").list(); 
-//	         System.out.println("BEFORE ACCSESSING PERSON INSIDE CONSUMPTION");
-	         for(Consumption c : consumptions ){
-//	        	 c.getPerson();
-	        	 System.out.println(c.getPerson().getName());
-	         }
-//	         System.out.println("AFTER ACCSESSING PERSON INSIDE CONSUMPTION");
+	         consumptions = session.createQuery("FROM Consumption").list();
 	         tx.commit();
+	         /* This is needed to make hibernate actually fetch the data */
+	         Hibernate.initialize(consumptions);
 	      }catch (HibernateException e) {
 	         if (tx!=null) tx.rollback();
 	         e.printStackTrace(); 
