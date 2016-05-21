@@ -102,9 +102,14 @@ app.config(['$routeProvider',
 ])
 
 function weekChart(coffeeDataSeries){
-	var coffeeCategories = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday']
-	// name: name , data: [1,1,1,1]
-	makeHighChart(coffeeCategories,coffeeDataSeries)
+	var weekDays = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday']
+	var startDayIndex = new Date().getDay()+1;
+	console.log(startDayIndex);
+	var daysOfLastWeek = weekDays.slice(startDayIndex, weekDays.length);
+	console.log(daysOfLastWeek)
+	var daysOfCurrentWeek = weekDays.slice(0,startDayIndex);
+	var coffeeDayCategories = daysOfLastWeek.concat(daysOfCurrentWeek);
+	makeHighChart(coffeeDayCategories,coffeeDataSeries)
 }
 
 function personChart(persons,consumptions){
