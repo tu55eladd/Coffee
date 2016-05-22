@@ -6,6 +6,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.TransactionException;
 
 import main.java.beans.Person;
 
@@ -37,6 +38,14 @@ public class PersonManager {
 	}
 	
 	public static List<Person> listPersons(){
+		return listPersons(true);
+	}
+	
+	public static List<Person> retryListPersons(){
+		return listPersons(false);
+	}
+	
+	public static List<Person> listPersons(boolean firstTry){
 		Session session = factory.openSession();
 	      Transaction tx = null;
 	      List<Person> persons = null;
@@ -44,7 +53,12 @@ public class PersonManager {
 	         tx = session.beginTransaction();
 	         persons = (List<Person>) session.createQuery("FROM Person").list();
 	         tx.commit();
-	      }catch (HibernateException e) {
+	      }
+	      catch(TransactionException e){
+	    	  if(firstTry) retryListPersons();
+	    	  e.printStackTrace();
+	      }
+	      catch (HibernateException e) {
 	         if (tx!=null) tx.rollback();
 	         e.printStackTrace(); 
 	      }finally {
@@ -59,4 +73,5 @@ public class PersonManager {
 		}
 		return false;
 	}
+	
 }
