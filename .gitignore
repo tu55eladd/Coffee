@@ -4,3 +4,4 @@ src/main/resources/hibernate.cfg.xml
 .db
 target/
 WebContent/
+src/main/resources/hibernate.cfg.xml
